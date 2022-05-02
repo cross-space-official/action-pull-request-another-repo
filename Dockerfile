@@ -1,13 +1,9 @@
 FROM golang:1.16-alpine3.13
 
-RUN apk update && \
-    apk upgrade && \
-    apk add build-base && \
-    apk add git && \
-    git clone https://github.com/cli/cli.git gh-cli && \
-    cd gh-cli && \
-    make && \
-    mv ./bin/gh /usr/local/bin/
+RUN wget https://github.com/cli/cli/releases/download/v2.9.0/gh_2.9.0_linux_386.tar.gz -O ghcli.tar.gz
+RUN tar --strip-components=1 -xf ghcli.tar.gz
+
+RUN mv ./bin/gh /usr/local/bin/
 
 ADD entrypoint.sh /entrypoint.sh
 
