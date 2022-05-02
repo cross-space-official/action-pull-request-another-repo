@@ -5,7 +5,7 @@ RUN tar --strip-components=1 -xf ghcli.tar.gz
 RUN apk update && \
     apk upgrade && \
     apk add build-base && \
-    apk add git &&
+    apk add git
 
 RUN mv ./bin/gh /usr/local/bin/
 
